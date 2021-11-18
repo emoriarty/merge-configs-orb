@@ -71,9 +71,10 @@ else:
   print(*paths, sep='\n')
 
   merge_yaml_process = subprocess.run(
-    ["xargs", "yq", "-y", "-s", "reduce .[] as $item ({}; . * $item)"],
-    input='\n'.join(paths),
+    ["xargs", "-L", "1", "yq", "-y", "-s", "reduce .[] as $item ({}; . * $item)"],
+    input=' '.join(paths),
+    text=True,
     capture_output=True)
 
   with open(output_path, 'w') as fp:
-    fp.write(merge_yaml_process.stdout.decode('utf-8'))
+    fp.write(merge_yaml_process.stdout)
