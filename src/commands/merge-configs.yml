@@ -17,9 +17,9 @@ parameters:
       values. One mapping per line, whitespace-delimited.
   output-path:
     type: string
-    default: "/tmp/pipeline-parameters.json"
+    default: "/tmp/pipeline-continuation.yml"
     description: >
-      Path to save the generated parameters to.
+      Path to save the generated continuation config to.
 
 steps:
   - run:
@@ -27,6 +27,6 @@ steps:
         BASE_REVISION: << parameters.base-revision >>
         MAPPING: << parameters.mapping >>
         OUTPUT_PATH: << parameters.output-path >>
-      name: Set parameters
+      name: Merge configuation files
       shell: /usr/bin/env python3
       command: <<include(scripts/create-parameters.py)>>
