@@ -5,11 +5,11 @@ usage:
   version: 2.1
   setup: true
   orbs:
-    path-filtering: circleci/path-filtering@0.0.1
+    merge-multiple-configs: emoriarty/merge-multiple-configs@0.0.1
   workflows:
     generate-config:
       jobs:
-        - path-filtering/filter:
+        - merge-multiple-configs/filter:
             base-revision: main
             mapping: |
               src/.* src/.circleci/config.yml
