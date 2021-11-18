@@ -73,7 +73,6 @@ else:
   merge_yaml_process = subprocess.run(
     ["xargs", "yq", "-y", "-s", "reduce .[] as $item ({}; . * $item)"],
     input='\n'.join(paths),
-    encoding='ascii',
     capture_output=True)
 
   with open(output_path, 'w') as fp:
