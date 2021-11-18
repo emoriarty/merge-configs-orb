@@ -1,7 +1,7 @@
 version: 2.1
 
 description: >
-  Merge mutiple yaml configuration files and continue a pipeline based on paths of changed files.
+  Merge mutiple YAML configuration files and continue a pipeline based on paths of changed files.
 display:
   home_url: "https://github.com/emoriarty/path-filtering-orb"
   source_url: "https://github.com/emoriarty/path-filtering-orb"

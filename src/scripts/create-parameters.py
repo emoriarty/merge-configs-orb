@@ -61,7 +61,7 @@ mappings = map(get_paths, mappings)
 paths = list(set(flatten_paths(mappings)))
 
 if 0 == len(paths):
-  print('No YAML configs to merge.')
+  print('No YAML files to merge')
 
   subprocess.run(["circleci-agent", "step",  "halt"])
 else:

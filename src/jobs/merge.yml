@@ -1,6 +1,6 @@
 description: >
   Continues a pipeline in the `setup` state based with static config
-  and a set of pipeline parameters based on the changes in this push.
+  and a set the continuation config based on the changes in this push.
 
 executor: default
 
@@ -17,8 +17,8 @@ parameters:
     type: string
     default: ""
     description: >
-      Mapping of path regular expressions to pipeline parameters and
-      values. One mapping per line, whitespace-delimited.
+      Mapping of path regular expressions to config file paths.
+      One mapping per line, whitespace-delimited.
   output-path:
     type: string
     default: "/tmp/pipeline-continuation.yml"
@@ -49,7 +49,7 @@ steps:
   - run:
       name: Install yq
       command: pip install yq
-  - set-parameters:
+  - merge-configs:
       base-revision: << parameters.base-revision >>
       mapping: << parameters.mapping >>
       output-path: << parameters.output-path >>

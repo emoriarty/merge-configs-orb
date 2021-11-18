@@ -5,11 +5,11 @@ usage:
   version: 2.1
   setup: true
   orbs:
-    merge-multiple-configs: emoriarty/merge-multiple-configs@0.0.1
+    multiple-configs: emoriarty/merge-multiple-configs@0.0.1
   workflows:
     generate-config:
       jobs:
-        - merge-multiple-configs/filter:
+        - multiple-configs/merge:
             base-revision: main
             mapping: |
               src/.* src/.circleci/config.yml
