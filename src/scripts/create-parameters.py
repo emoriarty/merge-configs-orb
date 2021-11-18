@@ -65,12 +65,16 @@ paths = list(set(flatten_paths(mappings)))
 if 0 == len(paths):
   print('No YAML configs to merge.')
 
-  halt_process = subprocess.run(["circleci-agent", "step",  "halt"])
+  subprocess.run(["circleci-agent", "step",  "halt"])
 else:
-  print('YAML files to merge: ', paths)
+  print('YAML files to merge: ')
   print(*paths, sep='\n')
 
-  merge_yaml_process = subprocess.run(["xargs", paths, "yq", "-y", "-s", "reduce .[] as $item ({}; . * $item)"], capture_output=True)
+  merge_yaml_process = subprocess.run(
+    ["xargs", "yq", "-y", "-s", "reduce .[] as $item ({}; . * $item)"],
+    input=paths.join('\n'),
+    encoding='ascii',
+    capture_output=True)
 
   with open(output_path, 'w') as fp:
     fp.write(merge_yaml_process.stdout.decode('utf-8'))
