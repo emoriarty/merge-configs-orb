@@ -43,9 +43,7 @@ mappings = [
 ]
 
 def check_mapping(m):
-  if 2 > len(m):
-    raise Exception("Invalid mapping")
-  pattern, paths = m
+  pattern, *paths = m
   regex = re.compile(r'^' + pattern + r'$')
   for change in changes:
     if regex.match(change):
