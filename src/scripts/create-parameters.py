@@ -59,6 +59,7 @@ def flatten_paths(t):
 mappings = filter(check_mapping, mappings)
 mappings = map(get_paths, mappings)
 paths = list(set(flatten_paths(mappings)))
+paths = list(filter(os.path.exists, paths))
 
 if 0 == len(paths):
   print('No YAML files to merge')
