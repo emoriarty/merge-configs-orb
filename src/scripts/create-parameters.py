@@ -56,10 +56,13 @@ def get_paths(m):
 def flatten_paths(t):
     return [item for sublist in t for item in sublist]
 
+def check_non_present_file(p):
+  return os.path.exists(p)
+
 mappings = filter(check_mapping, mappings)
 mappings = map(get_paths, mappings)
 paths = list(set(flatten_paths(mappings)))
-paths = filter(os.path.exists, paths)
+paths = filter(check_non_present_file, paths)
 
 if 0 == len(paths):
   print('No YAML files to merge')
