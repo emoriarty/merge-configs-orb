@@ -5,6 +5,7 @@ import re
 import subprocess
 
 output_path = os.environ.get('OUTPUT_PATH')
+shared_files = os.environ.get('SHARED_FILES')
 head = os.environ.get('CIRCLE_SHA1')
 base = subprocess.run(
   ['git', 'merge-base', os.environ.get('BASE_REVISION'), head],
@@ -58,6 +59,13 @@ def flatten_paths(t):
 
 mappings = filter(check_mapping, mappings)
 mappings = map(get_paths, mappings)
+paths = flatten_paths(mappings)
+
+# Add shared files
+if 0 < len(shared_files):
+  paths += shared_files.split()
+
+# Only unique files
 paths = list(set(flatten_paths(mappings)))
 
 if 0 == len(paths):
