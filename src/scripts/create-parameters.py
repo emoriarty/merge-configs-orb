@@ -13,8 +13,6 @@ base = subprocess.run(
   capture_output=True
 ).stdout.decode('utf-8').strip()
 
-print('debug', shared_files)
-
 if head == base:
   try:
     # If building on the same branch as BASE_REVISION, we will get the
@@ -63,13 +61,9 @@ mappings = filter(check_mapping, mappings)
 paths = map(get_paths, mappings)
 paths = flatten_paths(paths)
 
-print('debug', paths)
-
 # Add shared files
 if 0 < len(shared_files):
   paths += shared_files.split()
-
-print('debug', paths)
 
 # Only unique files
 paths = list(set(paths))
