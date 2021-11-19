@@ -68,6 +68,9 @@ if 0 < len(shared_files):
 # Only unique files
 paths = list(set(paths))
 
+# Remove non present files
+paths = list(filter(os.path.exists, paths))
+
 if 0 == len(paths):
   print('No YAML files to merge')
 
