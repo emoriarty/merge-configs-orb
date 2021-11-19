@@ -20,6 +20,13 @@ parameters:
     default: "/tmp/pipeline-continuation.yml"
     description: >
       Path to save the generated continuation config to.
+  shared-files:
+    type: string
+    default: ""
+    description: >
+      Specify here the partial and non-partial configuration file(s)
+      intended to be used on each build.
+      Whitespace-delimited.
 
 steps:
   - run:
@@ -27,6 +34,7 @@ steps:
         BASE_REVISION: << parameters.base-revision >>
         MAPPING: << parameters.mapping >>
         OUTPUT_PATH: << parameters.output-path >>
+        SHARED_FILES: << parameters.shared-files >>
       name: Merge configuation files
       shell: /usr/bin/env python3
       command: <<include(scripts/create-parameters.py)>>

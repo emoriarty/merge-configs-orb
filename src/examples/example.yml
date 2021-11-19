@@ -11,6 +11,10 @@ usage:
       jobs:
         - multiple-configs/merge:
             base-revision: main
+            shared: |
+              .circleci/commands.yml
+              .circleci/executors.yml
+              .circleci/jobs.yml
             mapping: |
               src/.* src/.circleci/config.yml
-              doc/.* src/.circleci/config.yml
+              doc/.* docs/.circleci/config.yml
