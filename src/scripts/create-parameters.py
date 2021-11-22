@@ -3,6 +3,7 @@
 import os
 import re
 import subprocess
+import sys
 
 output_path = os.environ.get('OUTPUT_PATH')
 shared_files = os.environ.get('SHARED_FILES')
@@ -68,8 +69,15 @@ if 0 < len(shared_files):
 # Only unique files
 paths = list(set(paths))
 
-# Remove non present files
-paths = list(filter(os.path.exists, paths))
+def non_present_files(path):
+  return not os.path.exists(path)
+
+# Log and halt when non present files
+non_present_paths = list(filter(non_present_files, paths))
+if 0 < len(non_present_paths):
+  print('The following files are not present: ')
+  print(*non_present_paths, sep='\n')
+  sys.exit(-1)
 
 if 0 == len(paths):
   print('No YAML files to merge')
