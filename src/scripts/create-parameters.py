@@ -18,7 +18,7 @@ def checkout(revision):
   )
 
 output_path = os.environ.get('OUTPUT_PATH')
-shared_files = os.environ.get('SHARED_FILES')
+config_files = os.environ.get('CONFIG_FILES')
 head = os.environ.get('CIRCLE_SHA1')
 base_revision = os.environ.get('BASE_REVISION')
 checkout(base_revision)  # Checkout base revision to make sure it is available for comparison
@@ -78,9 +78,9 @@ mappings = filter(check_mapping, mappings)
 paths = map(get_paths, mappings)
 paths = flatten_paths(paths)
 
-# Add shared files
-if 0 < len(shared_files):
-  paths += shared_files.split()
+# Add config files
+if 0 < len(config_files):
+  paths += config_files.split()
 
 # Only unique files
 paths = list(set(paths))

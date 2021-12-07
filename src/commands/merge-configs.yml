@@ -20,7 +20,7 @@ parameters:
     default: "/tmp/pipeline-continuation.yml"
     description: >
       Path to save the generated continuation config to.
-  shared-files:
+  files:
     type: string
     default: ""
     description: >
@@ -34,7 +34,7 @@ steps:
         BASE_REVISION: << parameters.base-revision >>
         MAPPING: << parameters.mapping >>
         OUTPUT_PATH: << parameters.output-path >>
-        SHARED_FILES: << parameters.shared-files >>
+        CONFIG_FILES: << parameters.files >>
       name: Merge configuation files
       shell: /usr/bin/env python3
       command: <<include(scripts/create-parameters.py)>>

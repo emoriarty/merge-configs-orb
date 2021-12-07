@@ -19,12 +19,12 @@ parameters:
     description: >
       Mapping of path regular expressions to config file paths.
       One mapping per line, whitespace-delimited.
-  shared:
+  files:
     type: string
     default: ""
     description: >
-      Specify here the partial and non-partial configuration file(s)
-      intended to be used on each build.
+      Specify here the configuration file(s) intended to be used
+      on each build.
       Whitespace-delimited.
   output-path:
     type: string
@@ -60,7 +60,7 @@ steps:
       base-revision: << parameters.base-revision >>
       mapping: << parameters.mapping >>
       output-path: << parameters.output-path >>
-      shared-files: << parameters.shared >>
+      files: << parameters.files >>
   - continuation/continue:
       configuration_path: << parameters.output-path >>
       circleci_domain: << parameters.circleci_domain >>
