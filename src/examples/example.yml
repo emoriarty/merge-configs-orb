@@ -5,12 +5,12 @@ usage:
   version: 2.1
   setup: true
   orbs:
-    multiple-configs: emoriarty/merge-multiple-configs@0.2.2
+    multiple-configs: emoriarty/merge-multiple-configs@0.3.0
   workflows:
     generate-config:
       jobs:
         - multiple-configs/merge:
-            shared: |
+            files: |
               .circleci/commands.yml
               .circleci/executors.yml
               .circleci/jobs.yml
