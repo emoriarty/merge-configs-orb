@@ -17,18 +17,6 @@ def checkout(revision):
     check=True
   )
 
-def checkout(revision):
-  """
-  Helper function for checking out a branch
-
-  :param revision: The revision to checkout
-  :type revision: str
-  """
-  subprocess.run(
-    ['git', 'checkout', revision],
-    check=True
-  )
-
 output_path = os.environ.get('OUTPUT_PATH')
 shared_files = os.environ.get('SHARED_FILES')
 head = os.environ.get('CIRCLE_SHA1')
