@@ -5,7 +5,7 @@ usage:
   version: 2.1
   setup: true
   orbs:
-    multiple-configs: emoriarty/merge-multiple-configs@0.3.0
+    multiple-configs: swile/merge-configs@0.1.0
   workflows:
     generate-config:
       jobs:
