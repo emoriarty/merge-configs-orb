@@ -5,11 +5,11 @@ usage:
   version: 2.1
   setup: true
   orbs:
-    multiple-configs: emoriarty/merge-multiple-configs@0.3.0
+    merge-configs: swile/merge-configs@0.1.0
   workflows:
     generate-config:
       jobs:
-        - multiple-configs/merge:
+        - merge-configs/merge:
             files: |
               .circleci/commands.yml
               .circleci/executors.yml
